@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Card for You ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            overflow: hidden;
+        }
+        .card {
+            width: 300px;
+            height: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+        .heart-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            height: 30px;
+            color: red;
+            font-size: 30px;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 0.7; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+        .open-btn {
+            padding: 10px 20px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .glow-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: red;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px red; }
+            100% { text-shadow: 0 0 15px pink; }
+        }
+        .message {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bg-music" src="https://audio.jukehost.co.uk/6ebEoAQ99D7BGzMaJePUhcn4frIHzcyG"></audio>
+    <div class="heart-container"></div>
+    <button class="open-btn" onclick="openCard()">Open Your Card 💌</button>
+    <div class="card" id="card">
+        <h2 class="glow-text">For My Special One 💖</h2>
+        <p class="message">Hey Kuttuhh...
+            Happy valentines day!!!💖</p>
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZG5yeGp5dnA1MmdlNWZzemJ3OGl4cnBrcjAxNjJ1YXRjaXRrMDF2NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ezsfr4nGGdAwLp4wol/giphy.gif" alt="Cute GIF" width="100%">
+    </div>
+    <script>
+        function openCard() {
+            document.getElementById("card").style.transform = "scale(1)";
+            document.querySelector(".open-btn").style.display = "none";
+            document.getElementById("bg-music").play();
+            setInterval(createHearts, 500);
+        }
+        function createHearts() {
+            const heartContainer = document.querySelector(".heart-container");
+            for (let i = 0; i < 5; i++) { // More hearts added per cycle
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.innerHTML = "💖";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+                heartContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
